@@ -9,6 +9,8 @@
 #import "Contact.h"
 
 @implementation Contact
+@synthesize phone;
+
 
 - (instancetype)initWithName:(NSString*)name email:(NSString*)email
 {
@@ -16,6 +18,7 @@
     if (self) {
         _name = name;
         _email = email;
+        NSMutableDictionary *phone = [[NSMutableDictionary alloc] init];
     }
     return self;
 }

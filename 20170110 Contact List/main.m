@@ -16,7 +16,7 @@ int main(int argc, const char * argv[]) {
     BOOL listOn = YES;
     while (listOn == YES)
     {
-        NSString *userInput = [InputCollector inputForPrompt:@"What would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nshow - Show a specific contact\nfind - Search the contact list for a name\nquit - Exit Application"];
+        NSString *userInput = [InputCollector inputForPrompt:@"What would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nshow - Show a specific contact\nfind - Search the contact list for a name\nphone - Add a phone number\nquit - Exit Application"];
         
         if ([userInput isEqualToString:@"quit"]) {
             listOn = NO;
@@ -77,6 +77,20 @@ int main(int argc, const char * argv[]) {
             }
             else {
                 NSLog(@"Please enter a name with find.");
+            }
+        }
+        else if ([userInput isEqualToString: @"phone"]) {
+            NSInteger contactNumber = [[InputCollector inputForPrompt:@"What is your contact's ID?"] intValue];
+            for (Contact *contact in list1.contactList) {
+                if (list1.contactList.count > contactNumber) {
+                    NSString *phoneType = [InputCollector inputForPrompt:@"Enter the type of number."];
+                    NSString *phoneNumber = [InputCollector inputForPrompt:@"Enter the phone number."];
+                    [contact.phone setObject:phoneType forKey:phoneNumber];
+                }
+                else {
+                    NSLog(@"Contact does not exist.");
+                }
+                
             }
         }
     }
