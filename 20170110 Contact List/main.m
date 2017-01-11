@@ -25,8 +25,19 @@ int main(int argc, const char * argv[]) {
         else if ([userInput isEqualToString:@"new"]) {
             NSString *contactName = [InputCollector inputForPrompt:@"What is the name?"];
             NSString *contactEmail = [InputCollector inputForPrompt:@"What is the email?"];
-            Contact *contactFull = [[Contact alloc] initWithName:contactName email:contactEmail];
-            [list1 addContact:contactFull];
+            BOOL repeat = NO;
+            for (Contact *contact in list1.contactList) {
+                if (contactEmail == contact.email) {
+                    repeat = YES;
+                }
+            }
+            if (repeat == NO) {
+                Contact *contactFull = [[Contact alloc] initWithName:contactName email:contactEmail];
+                [list1 addContact:contactFull];
+            }
+            else {
+                NSLog(@"Duplicate entry");
+            }
         }
         else if ([userInput isEqualToString:@"list"]) {
             int i = 0;
